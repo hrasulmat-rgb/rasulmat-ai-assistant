@@ -1,15 +1,17 @@
-# [Project name]
+# Python Telegram Bot
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A small Telegram bot that responds to `/start`, `/help`, and regular text messages.
 
 ## Run & Operate
 
+- `python telegram-bot/bot.py` — run the Telegram bot
 - `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
+- Required secret: `TELEGRAM_BOT_TOKEN` — Telegram bot token from BotFather
+- Required env for the existing API scaffold: `DATABASE_URL` — Postgres connection string
 
 ## Stack
 
@@ -22,15 +24,18 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `telegram-bot/bot.py` — Telegram handlers and polling entry point
+- `telegram-bot/requirements.txt` — Python dependency
+- `telegram-bot/README.md` — setup and run instructions
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- The bot uses long polling, which works without exposing a public webhook URL.
+- The Telegram token is read from `TELEGRAM_BOT_TOKEN` and is never stored in source code.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+The bot greets users, explains its commands, and echoes regular text messages.
 
 ## User preferences
 
