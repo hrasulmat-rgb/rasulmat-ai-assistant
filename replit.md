@@ -1,6 +1,6 @@
 # Python Telegram Bot
 
-A small Telegram bot that responds to `/start`, `/help`, and regular text messages.
+A small Telegram bot that responds to `/start`, `/help`, and OpenAI-powered text prompts.
 
 ## Run & Operate
 
@@ -11,6 +11,7 @@ A small Telegram bot that responds to `/start`, `/help`, and regular text messag
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
 - Required secret: `TELEGRAM_BOT_TOKEN` — Telegram bot token from BotFather
+- Required secret: `OPENAI_API_KEY` — OpenAI API key
 - Required env for the existing API scaffold: `DATABASE_URL` — Postgres connection string
 
 ## Stack
@@ -31,11 +32,11 @@ A small Telegram bot that responds to `/start`, `/help`, and regular text messag
 ## Architecture decisions
 
 - The bot uses long polling, which works without exposing a public webhook URL.
-- The Telegram token is read from `TELEGRAM_BOT_TOKEN` and is never stored in source code.
+- Telegram and OpenAI credentials are read from Replit Secrets and never stored in source code.
 
 ## Product
 
-The bot greets users, explains its commands, and echoes regular text messages.
+The bot greets users, explains its commands, and returns OpenAI responses to regular text messages.
 
 ## User preferences
 

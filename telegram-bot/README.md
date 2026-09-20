@@ -1,15 +1,19 @@
 # Python Telegram Bot
 
-A small Telegram bot built with `python-telegram-bot`. It supports:
+A small Telegram bot built with `python-telegram-bot` and OpenAI. It supports:
 
 - `/start` — sends a welcome message
 - `/help` — lists the available commands
-- Any regular text — echoes the message back
+- Any regular text — sends it to OpenAI and returns the AI response
 
 ## Run on Replit
 
-The project already has a `TELEGRAM_BOT_TOKEN` secret configured. To run the bot
-from the Shell:
+The project has both required secrets configured:
+
+- `TELEGRAM_BOT_TOKEN` — Telegram bot token from BotFather
+- `OPENAI_API_KEY` — OpenAI API key
+
+To run the bot from the Shell:
 
 ```bash
 python telegram-bot/bot.py
@@ -26,10 +30,11 @@ Keep the process running while you chat with the bot on Telegram.
    python -m pip install -r telegram-bot/requirements.txt
    ```
 
-3. Export the token:
+3. Export both secrets:
 
    ```bash
    export TELEGRAM_BOT_TOKEN="your-token"
+   export OPENAI_API_KEY="your-openai-api-key"
    ```
 
 4. Start the bot:
@@ -38,5 +43,5 @@ Keep the process running while you chat with the bot on Telegram.
    python telegram-bot/bot.py
    ```
 
-Never commit the real token. Use `.env.example` as a reference for the required
-environment variable.
+Never commit real secrets. Use `.env.example` as a reference for the required
+environment variables.

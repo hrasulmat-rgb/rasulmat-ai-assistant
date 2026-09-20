@@ -4,5 +4,6 @@ version = "0.1.0"
 description = "A small Python Telegram bot"
 requires-python = ">=3.13"
 dependencies = [
+    "openai>=3.16.2",
     "python-telegram-bot>=22.8",
 ]
