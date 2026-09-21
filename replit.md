@@ -1,6 +1,6 @@
 # Python Telegram Bot
 
-A small Telegram bot that responds to `/start`, `/help`, and OpenAI-powered text prompts.
+A small Telegram bot that responds to `/start`, `/help`, and Gemini-powered text prompts with per-user SQLite conversation memory.
 
 ## Run & Operate
 
@@ -11,7 +11,7 @@ A small Telegram bot that responds to `/start`, `/help`, and OpenAI-powered text
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
 - Required secret: `TELEGRAM_BOT_TOKEN` — Telegram bot token from BotFather
-- Required secret: `OPENAI_API_KEY` — OpenAI API key
+- Required secret: `GEMINI_API_KEY` — Google Gemini API key
 - Required env for the existing API scaffold: `DATABASE_URL` — Postgres connection string
 
 ## Stack
@@ -26,17 +26,19 @@ A small Telegram bot that responds to `/start`, `/help`, and OpenAI-powered text
 ## Where things live
 
 - `telegram-bot/bot.py` — Telegram handlers and polling entry point
+- `telegram-bot/memory.py` — SQLite conversation storage and bounded history selection
 - `telegram-bot/requirements.txt` — Python dependency
 - `telegram-bot/README.md` — setup and run instructions
 
 ## Architecture decisions
 
 - The bot uses long polling, which works without exposing a public webhook URL.
-- Telegram and OpenAI credentials are read from Replit Secrets and never stored in source code.
+- Telegram and Gemini credentials are read from Replit Secrets and never stored in source code.
+- Conversation history is stored locally per Telegram user; only bounded recent history is sent to Gemini.
 
 ## Product
 
-The bot greets users, explains its commands, and returns OpenAI responses to regular text messages.
+The bot greets users, explains its commands, returns Gemini responses, and supports per-user memory controls through `/memory` and `/newchat`.
 
 ## User preferences
 
