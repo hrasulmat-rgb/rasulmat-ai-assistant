@@ -11,6 +11,30 @@ out-tsc
 # dependencies
 node_modules
 
+# Python runtime and local secrets
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+!.env.example/
+*.secret
+*.secrets
+.secrets/
+secrets/
+
+# Local databases, logs, uploads, and temporary files
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*
+*.log
+telegram-bot/data/
+telegram-bot/uploads/
+telegram-bot/tmp/
+
 # IDEs and editors
 /.idea
 .project
